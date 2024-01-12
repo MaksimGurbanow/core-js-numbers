@@ -50,7 +50,8 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 + value2) / 2;
+  const average = value1 / 2 + value2 / 2;
+  return average;
 }
 
 /**
@@ -395,7 +396,7 @@ function toFixed(number, fractionDigits) {
  * 12.345, 4   => '12.35'
  */
 function toPrecision(number, precision) {
-  return Number(number.toFixed(precision)).toString();
+  return number.toPrecision(precision);
 }
 
 /**
@@ -481,9 +482,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  const parsedInteger = parseInt(str, base);
-
-  return Number.isNaN(parsedInteger) ? NaN : parsedInteger;
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -556,7 +555,7 @@ function roundToNearestInteger(number) {
  * -5.5 => -5
  */
 function getIntegerPartNumber(number) {
-  return Number.parseInt(number, 10);
+  return Math.trunc(number);
 }
 
 /**
@@ -572,7 +571,7 @@ function getIntegerPartNumber(number) {
  * 0.1, 0.2, 0.3 => 0.6
  */
 function getSumOfNumbers(x1, x2, x3) {
-  return x1 + x2 + x3;
+  return Math.round((x1 + x2 + x3) * 100) / 100;
 }
 
 /**
@@ -604,7 +603,7 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -1, 1 => -1 | 0 | 1
  */
 function getRandomInteger(min, max) {
-  return Math.floor(Math.random() * max) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -618,7 +617,7 @@ function getRandomInteger(min, max) {
  * 3, 4 => 5
  */
 function getHypotenuse(a, b) {
-  return (a ** 2 + b ** 2) ** 0.5;
+  return Math.hypot(a, b);
 }
 
 /**
@@ -635,13 +634,7 @@ function getHypotenuse(a, b) {
  * 15 => 8
  */
 function getCountOfOddNumbers(number) {
-  let count = 0;
-  for (let i = 1; i < number + 1; i += 1) {
-    if (i % 2 === 0) {
-      count += 1;
-    }
-  }
-  return count;
+  return Math.ceil(Math.abs(number / 2));
 }
 
 module.exports = {
